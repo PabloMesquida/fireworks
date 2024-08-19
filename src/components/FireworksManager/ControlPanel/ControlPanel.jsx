@@ -22,7 +22,7 @@ function ControlPanel({ setFireworks, textures }) {
 
   return (
     <Html
-      position={[-5, 0, -2]}
+      position={[-7, 0, -2]}
       transform
       as='div'
       style={{
