@@ -27,33 +27,6 @@ function FireworksManager({ sizes }) {
   )
 }
 
-const MemoizedFireworksManager = memo(FireworksManager, (prevProps, nextProps) => {
-  // Comprobar si las propiedades han cambiado
-  if (prevProps.sizes !== nextProps.sizes) {
-    console.log('sizes ha cambiado')
-    return false // sizes ha cambiado, se debe renderizar de nuevo
-  }
-
-  // Comprobar si fireworks ha cambiado (referencia de array)
-  if (prevProps.fireworks !== nextProps.fireworks) {
-    console.log('fireworks ha cambiado')
-    return false // fireworks ha cambiado, se debe renderizar de nuevo
-  }
-
-  // Comprobar si callbacksRef ha cambiado (referencia de objeto)
-  if (prevProps.callbacksRef !== nextProps.callbacksRef) {
-    console.log('callbacksRef ha cambiado')
-    return false // callbacksRef ha cambiado, se debe renderizar de nuevo
-  }
-
-  // Comprobar si handleComplete ha cambiado
-  if (prevProps.handleComplete !== nextProps.handleComplete) {
-    console.log('handleComplete ha cambiado')
-    return false // handleComplete ha cambiado, se debe renderizar de nuevo
-  }
-
-  // Si ninguna propiedad ha cambiado, no renderizar de nuevo
-  return true
-})
+const MemoizedFireworksManager = memo(FireworksManager)
 
 export default MemoizedFireworksManager

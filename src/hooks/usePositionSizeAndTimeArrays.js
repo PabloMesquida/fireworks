@@ -1,10 +1,11 @@
 import { useMemo } from 'react'
 import { Spherical, Vector3 } from 'three'
 
-function usePositionAndSizeArrays(count, radius, position) {
+function usePositionSizeAndTimeArrays(count, radius, position) {
   return useMemo(() => {
     const positionsArray = new Float32Array(count * 3)
     const sizesArray = new Float32Array(count)
+    const timeMultipliersArray = new Float32Array(count)
 
     const spherical = new Spherical()
     const pos = new Vector3(...position)
@@ -23,9 +24,11 @@ function usePositionAndSizeArrays(count, radius, position) {
       positionsArray[i3 + 2] = pos.z
 
       sizesArray[i] = Math.random() * 2
+
+      timeMultipliersArray[i] = 1 + Math.random()
     }
-    return { positionsArray, sizesArray }
+    return { positionsArray, sizesArray, timeMultipliersArray }
   }, [count, radius, position])
 }
 
-export default usePositionAndSizeArrays
+export default usePositionSizeAndTimeArrays
