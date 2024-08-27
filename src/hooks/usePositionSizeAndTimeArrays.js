@@ -23,7 +23,7 @@ function usePositionSizeAndTimeArrays(count, radius, position) {
       positionsArray[i3 + 1] = pos.y
       positionsArray[i3 + 2] = pos.z
 
-      sizesArray[i] = Math.random() * 2
+      sizesArray[i] = Math.random() * 1.5
 
       timeMultipliersArray[i] = 1 + Math.random()
     }

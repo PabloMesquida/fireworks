@@ -11,8 +11,8 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, handleComplete }) {
         return (
           <CreateFireworks
             key={fw.id}
-            count={600}
-            size={0.077}
+            count={300}
+            size={0.09}
             sizes={sizes}
             position={fw.position}
             texture={fw.texture}

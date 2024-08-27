@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, memo } from 'react'
+import { useState, useRef, memo } from 'react'
 import FireworksRenderer from './FireworksRenderer'
 import ControlPanel from './ControlPanel/ControlPanel'
 import useTextures from '../../hooks/useTextures'
@@ -10,9 +10,11 @@ function FireworksManager({ sizes }) {
 
   const textures = useTextures()
 
-  const handleComplete = useCallback((id) => {
+  const handleComplete = (id) => {
     setFireworks((prev) => prev.filter((fw) => fw.id !== id))
-  }, [])
+  }
+
+  console.log('FireworksManager')
 
   return (
     <>
