@@ -1,13 +1,12 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { Environment, OrbitControls, Grid } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import getWindowSizes from './utils/getWindowsSizes'
 import FireworksManager from './components/FireworksManager/FireworksManager'
+import Ground from './components/Ground/Ground'
 
 function App() {
   const sizes = getWindowSizes()
-
-  console.log('App rendered')
 
   return (
     <Canvas
@@ -16,8 +15,24 @@ function App() {
       dpr={sizes.pixelRatio}
     >
       <Perf />
-      <OrbitControls />
+      <OrbitControls
+        minPolarAngle={Math.PI / 4}
+        maxPolarAngle={Math.PI / 2}
+      />
       <FireworksManager sizes={sizes} />
+      <Environment preset='dawn' />
+      <Grid
+        position={[0, -1.49, 0]}
+        infiniteGrid
+        sectionSize={10}
+        sectionColor='#222'
+        fadeDistance={20}
+        fadeStrength={1}
+        cellSize={1}
+        cellColor='#333'
+        lineWidth={0.5}
+      />
+      <Ground />
     </Canvas>
   )
 }

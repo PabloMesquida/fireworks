@@ -14,8 +14,6 @@ function FireworksManager({ sizes }) {
     setFireworks((prev) => prev.filter((fw) => fw.id !== id))
   }
 
-  console.log('FireworksManager')
-
   return (
     <>
       <FireworksRenderer
