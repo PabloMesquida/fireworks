@@ -29,7 +29,7 @@ void main ()
      vec3 newPosition2 = position;
 
     // Agregar una curva en el eje Y para simular la gravedad
-    float explodingCurveProgress = remap(progress, 0.0, 0.1, 0.0, 0.2);
+    float explodingCurveProgress = remap(progress, 0.0, 0.1, 0.0, 0.18);
     explodingCurveProgress = -5.0 * explodingCurveProgress; 
     explodingCurveProgress = clamp(explodingCurveProgress, -2.0, 1.0);
     newPosition.y += explodingCurveProgress * 0.4;

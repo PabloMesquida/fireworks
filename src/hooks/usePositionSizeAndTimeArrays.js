@@ -40,12 +40,12 @@ function usePositionSizeAndTimeArrays(count, radius, position, trailLength) {
         positionsArray[trailIndex + 1] = originalY - 3
         positionsArray[trailIndex + 2] = originalZ
 
-        sizesArray[i * trailLength + j] = Math.random() * 1.5
+        sizesArray[i * trailLength + j] = Math.random() * 2
 
         timeMultipliersArray[i * trailLength + j] = 1 + Math.random()
 
         // Ajustar el trailOffset para que estén más pegadas a la original
-        trailOffsetsArray[i * trailLength + j] = (j / trailLength) * 0.05 // Pequeño desplazamiento temporal
+        trailOffsetsArray[i * trailLength + j] = (j / trailLength) * 0.02 // velocidad del trail
       }
     }
 
