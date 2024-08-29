@@ -5,8 +5,8 @@ import fireworksVertexShader from '../../../shaders/fireworks/vertex.glsl'
 import fireworksFragmentShader from '../../../shaders/fireworks/fragment.glsl'
 import usePositionSizeAndTimeArrays from '../../../hooks/usePositionSizeAndTimeArrays'
 
-function CreateFireworks({ count, size, sizes, position, texture, radius, color, handleAnimationComplete, blending = AdditiveBlending }) {
-  const { positionsArray, sizesArray, timeMultipliersArray } = usePositionSizeAndTimeArrays(count, radius, position)
+function CreateFireworks({ count, size, sizes, position, texture, radius, color, handleAnimationComplete, blending = AdditiveBlending, trailLength }) {
+  const { positionsArray, sizesArray, timeMultipliersArray, trailOffsetsArray } = usePositionSizeAndTimeArrays(count, radius, position, trailLength)
 
   const geometry = useMemo(() => {
     const geom = new BufferGeometry()
@@ -14,9 +14,10 @@ function CreateFireworks({ count, size, sizes, position, texture, radius, color,
     geom.setAttribute('position', new BufferAttribute(positionsArray, 3))
     geom.setAttribute('aSize', new BufferAttribute(sizesArray, 1))
     geom.setAttribute('aTimeMultiplier', new BufferAttribute(timeMultipliersArray, 1))
+    geom.setAttribute('aTrailOffset', new BufferAttribute(trailOffsetsArray, 1))
 
     return geom
-  }, [positionsArray, sizesArray, timeMultipliersArray])
+  }, [positionsArray, sizesArray, timeMultipliersArray, trailOffsetsArray])
 
   const uniforms = useMemo(() => ({
     uSize: new Uniform(size),
