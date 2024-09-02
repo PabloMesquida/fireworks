@@ -12,14 +12,14 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, handleComplete }) {
           <CreateFireworks
             key={fw.id}
             count={100}
-            size={0.12}
+            size={0.25}
             sizes={sizes}
             position={fw.position}
             texture={fw.texture}
             radius={3}
             color={fw.color}
             handleAnimationComplete={callbacksRef.current[fw.id]}
-            trailLength={20}
+            trailLength={10}
           />
         )
       })}
