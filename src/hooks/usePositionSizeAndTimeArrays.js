@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Vector3 } from 'three'
+import { Vector3, Spherical } from 'three'
 
 function usePositionSizeAndTimeArrays(count, radius, position, trailLength) {
   return useMemo(() => {
@@ -8,37 +8,34 @@ function usePositionSizeAndTimeArrays(count, radius, position, trailLength) {
     const timeMultipliersArray = new Float32Array(count * trailLength)
     const trailOffsetsArray = new Float32Array(count * trailLength)
 
-    const pos = new Vector3(...position)
-
-    // Generar posiciones de partículas utilizando Fibonacci Sphere
     for (let i = 0; i < count; i++) {
-      const index = i + 0.5 // Ajuste de índice para la distribución uniforme
-      const phi = Math.acos(1 - 2 * index / count) // Ángulo polar
-      const theta = Math.PI * (1 + Math.sqrt(5)) * index // Ángulo azimutal
+      const i3 = i * 3
 
-      const randomRadius = radius * (0.8 + Math.random() * 0.2) // Aleatoriedad entre 0.8 y 1.0 del radio original
+      // Generar valores esféricos uniformemente distribuidos
+      const theta = Math.acos(2 * Math.random() - 1) // phi: ángulo polar
+      const phi = Math.random() * Math.PI * 2 // theta: ángulo azimutal
 
-      let x = randomRadius * Math.sin(phi) * Math.cos(theta)
-      let y = randomRadius * Math.sin(phi) * Math.sin(theta)
-      let z = randomRadius * Math.cos(phi)
+      // Mantener el radio como en el código original
+      const spherical = new Spherical(
+        radius * (0.75 + Math.random() * 0.25),
+        theta,
+        phi
+      )
 
-      // Añadir un pequeño desplazamiento aleatorio para mayor aleatoriedad
-      const randomnessFactor = 0.2 * radius // Factor de aleatoriedad adicional
-      x += (Math.random() - 0.5) * randomnessFactor
-      y += (Math.random() - 0.5) * randomnessFactor
-      z += (Math.random() - 0.5) * randomnessFactor
+      const position = new Vector3()
+      position.setFromSpherical(spherical)
 
-      const originalX = pos.x + x
-      const originalY = pos.y + y
-      const originalZ = pos.z + z
+      positionsArray[i3] = position.x
+      positionsArray[i3 + 1] = position.y
+      positionsArray[i3 + 2] = position.z
 
       for (let j = 0; j < trailLength; j++) {
         const trailIndex = (i * trailLength + j) * 3
 
         // Asignar la misma posición inicial para todas las partículas del trail
-        positionsArray[trailIndex] = originalX
-        positionsArray[trailIndex + 1] = originalY - 3
-        positionsArray[trailIndex + 2] = originalZ
+        positionsArray[trailIndex] = position.x
+        positionsArray[trailIndex + 1] = position.y
+        positionsArray[trailIndex + 2] = position.z
 
         // Generar tamaños más pequeños aleatoriamente para las partículas del trail
         const baseSize = 1.0 // Tamaño base para la partícula original

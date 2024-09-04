@@ -10,7 +10,7 @@ function ControlPanel({ setFireworks, textures }) {
       {
         id,
         position: new Vector3(
-          (Math.random() - 0.5) * 2,
+          (Math.random() - 0.5) * 10,
           Math.random() + 3,
           (Math.random() - 0.5) * 2
         ),
