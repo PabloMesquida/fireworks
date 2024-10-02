@@ -20,10 +20,10 @@ void main ()
     float stopFactor = 1.0 - aTrailOffset * 0.7; 
     progress *= stopFactor;
 
-    vec3 newPosition = position;
+    vec3 newPosition = vec3(0.0,1.0,0.1);
 
     // Explosión inicial
-    float explodingProgress = remap(progress, 0.0, 0.3, 0.0, 1.0);
+    float explodingProgress = remap(progress, 0.0, 1.0, 0.0, 1.0);
     explodingProgress = clamp(explodingProgress, 0.0, 1.0);
     explodingProgress = 1.0 - (pow(1.0 - explodingProgress, 3.0));
     newPosition *= explodingProgress;
@@ -38,17 +38,7 @@ void main ()
     float fallingProgress = remap(progress, 0.1, 1.0, 0.0, 1.0);
     fallingProgress = clamp(fallingProgress, 0.0, 1.0);
     fallingProgress = 1.0 - (pow(1.0 - fallingProgress, 3.0));
-    newPosition.y -= fallingProgress * 0.1;
-    if(newPosition.x > 0.0){
-        newPosition.x += fallingProgress * 0.1;
-    } else{
-        newPosition.x -= fallingProgress * 0.1;
-    }
-      if(newPosition.z > 0.0){
-        newPosition.z += fallingProgress * 0.1;
-    } else{
-        newPosition.z -= fallingProgress * 0.1;
-    }
+    newPosition.y -= fallingProgress * 0.2;
 
     // Ajuste de tamaño
     float sizeOpeningProgress = remap(progress, 0.0, 0.125, 0.0, 1.0);
