@@ -1,12 +1,28 @@
+uniform float uSize;
+uniform vec2 uResolution;
+uniform float uProgress;
+
+float remap(float value, float originMin, float originMax, float destinationMin, float destinationMax)
+{
+    return destinationMin + (value - originMin) * (destinationMax - destinationMin) / (originMax - originMin);
+}
+
+
 void main()
 {
-    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+    vec3 newPosition = position;
+    float progress = uProgress;
+    
+    float launcherProgress = remap(progress, 0.0, 1.0, 0.0, 1.0);
+    launcherProgress = clamp(launcherProgress, 0.0, 1.0);
+    launcherProgress = 1.0 - (pow(1.0 - launcherProgress, 3.0));
+    newPosition *= launcherProgress;
+
+    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
     gl_Position = projectionMatrix * viewPosition;
     
-    gl_Position = projectedPosition;
-
-    gl_PointSize = uSize * uResolution.y * aSize * sizeProgress * sizeTwinkling;
+    gl_PointSize = uSize * uResolution.y ;
     gl_PointSize *= 1.0 / -viewPosition.z;
 
     // Control de desaparición de puntos muy pequeños

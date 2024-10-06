@@ -49,9 +49,7 @@ function CreateFireworks({ count, size, sizes, position, texture, radius, color,
   }, [geometry, material, uniforms.uProgress, handleAnimationComplete])
 
   return (
-
     <points geometry={geometry} material={material} position={position} />
-
   )
 }
 

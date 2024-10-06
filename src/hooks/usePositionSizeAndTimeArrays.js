@@ -51,7 +51,7 @@ function usePositionSizeAndTimeArrays(count, radius, position, trailLength) {
     }
 
     return { positionsArray, sizesArray, timeMultipliersArray, trailOffsetsArray }
-  }, [count, radius, position, trailLength])
+  }, [count, radius, trailLength])
 }
 
 export default usePositionSizeAndTimeArrays
