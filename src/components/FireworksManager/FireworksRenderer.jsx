@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-closing-bracket-location */
+/* eslint-disable react/jsx-indent-props */
+/* eslint-disable indent */
 import { Fragment, useState } from 'react'
 import CreateFireworks from './CreateFireworks/CreateFireworks'
 import CreateShell from './CreateShell/CreateShell'
@@ -28,29 +31,28 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
         }
         return (
           <Fragment key={fw.id}>
-            {/* Renderiza CreateShell solo si su animación no ha terminado */}
-            {!shellCompleted[fw.id] && (
-              <CreateShell
-                size={0.50}
+            {!shellCompleted[fw.id]
+              ? (
+                <CreateShell
+                  size={0.3}
+                  sizes={sizes}
+                  position={fw.position}
+                  shellTexture={fw.shellTexture}
+                  color={fw.color}
+                  handleShellAnimationComplete={shellCallbacksRef.current[fw.id]}
+                />
+              )
+              : (<CreateFireworks
+                count={100}
+                size={0.3}
                 sizes={sizes}
                 position={fw.position}
                 texture={fw.texture}
+                radius={3}
                 color={fw.color}
-                handleShellAnimationComplete={shellCallbacksRef.current[fw.id]}
-              />
-            )}
-            {/* CreateFireworks se renderiza normalmente */}
-            <CreateFireworks
-              count={100}
-              size={0.50}
-              sizes={sizes}
-              position={fw.position}
-              texture={fw.texture}
-              radius={3}
-              color={fw.color}
-              handleAnimationComplete={callbacksRef.current[fw.id]}
-              trailLength={10}
-            />
+                handleAnimationComplete={callbacksRef.current[fw.id]}
+                trailLength={10}
+              />)}
           </Fragment>
         )
       })}

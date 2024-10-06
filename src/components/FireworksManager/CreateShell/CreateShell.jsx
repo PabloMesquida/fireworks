@@ -4,16 +4,16 @@ import trailVertexShader from '../../../shaders/trail/vertex.glsl'
 import trailFragmentShader from '../../../shaders/trail/fragment.glsl'
 import gsap from 'gsap'
 
-function CreateShell({ size, sizes, position, texture, color, handleShellAnimationComplete, blending = AdditiveBlending }) {
-  const startPosition = new Vector3(0, -1, 0)
+function CreateShell({ size, sizes, position, shellTexture, color, handleShellAnimationComplete, blending = AdditiveBlending }) {
+  const startPosition = new Vector3(0, 0, 0)
 
   const uniforms = useMemo(() => ({
     uSize: new Uniform(size / 2),
     uResolution: new Uniform(sizes.resolution),
-    uTexture: new Uniform(texture),
+    uTexture: new Uniform(shellTexture),
     uColor: new Uniform(color),
     uProgress: new Uniform(0)
-  }), [size, sizes.resolution, texture, color])
+  }), [size, sizes.resolution, shellTexture, color])
 
   const material = useMemo(() => {
     return new ShaderMaterial({

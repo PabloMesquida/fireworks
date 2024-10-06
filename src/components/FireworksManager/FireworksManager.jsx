@@ -20,7 +20,7 @@ function FireworksManager({ sizes }) {
   }
 
   return (
-    <>
+    <group position={[0, -2, 0]}>
       <FireworksRenderer
         fireworks={fireworks}
         sizes={sizes}
@@ -30,7 +30,7 @@ function FireworksManager({ sizes }) {
         handleShellAnimationComplete={handleShellAnimationComplete}
       />
       <ControlPanel setFireworks={setFireworks} textures={textures} />
-    </>
+    </group>
   )
 }
 
