@@ -29,11 +29,21 @@ function CreateShell({ size, sizes, position, shellTexture, color, handleShellAn
 
   const geometry = useMemo(() => {
     const geom = new BufferGeometry()
-    const points = new Float32Array([position.x, position.y, position.z])
-    geom.setAttribute('position', new BufferAttribute(points, 3))
-    return geom
-  }, [])
 
+    // Posición inicial del vértice
+    const aStartPosition = new Float32Array([startPosition.x, startPosition.y, startPosition.z])
+
+    // Posición final del vértice
+    const aEndPosition = new Float32Array([position.x, position.y, position.z])
+
+    // Asigna el atributo 'position' para la posición inicial
+    geom.setAttribute('position', new BufferAttribute(aStartPosition, 3))
+
+    // Asigna el atributo 'aEndPosition' para la posición final
+    geom.setAttribute('aEndPosition', new BufferAttribute(aEndPosition, 3))
+
+    return geom
+  }, [position, startPosition])
   useEffect(() => {
     const animation = gsap.to(uniforms.uProgress, {
       value: 1,
@@ -52,7 +62,7 @@ function CreateShell({ size, sizes, position, shellTexture, color, handleShellAn
   }, [geometry, material, uniforms.uProgress, handleShellAnimationComplete])
 
   return (
-    <points geometry={geometry} material={material} position={startPosition} />
+    <points geometry={geometry} material={material} />
   )
 }
 
