@@ -4,11 +4,10 @@ import trailVertexShader from '../../../shaders/trail/vertex.glsl'
 import trailFragmentShader from '../../../shaders/trail/fragment.glsl'
 import gsap from 'gsap'
 
-const getRandomXPosition = () => (Math.random() - 0.5) * 4
-const getRandomYPosition = () => (Math.random() - 0.5)
+const getRandomPositionInRange = (range) => (Math.random() - 0.5) * range
 
 function CreateShell({ size, sizes, position, shellTexture, color, handleShellAnimationComplete, blending = AdditiveBlending }) {
-  const startPosition = new Vector3(getRandomXPosition(), 0, getRandomYPosition())
+  const startPosition = new Vector3(getRandomPositionInRange(4), 0, getRandomPositionInRange(1))
 
   const uniforms = useMemo(() => ({
     uSize: new Uniform(size / 2),
