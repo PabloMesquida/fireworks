@@ -1,12 +1,8 @@
+#include ../utils/remap.glsl
+
 uniform float uSize;
 uniform vec2 uResolution;
 uniform float uProgress;
-
-float remap(float value, float originMin, float originMax, float destinationMin, float destinationMax)
-{
-    return destinationMin + (value - originMin) * (destinationMax - destinationMin) / (originMax - originMin);
-}
-
 
 void main()
 {

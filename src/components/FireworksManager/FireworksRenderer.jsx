@@ -9,12 +9,10 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
   const [shellCompleted, setShellCompleted] = useState({})
 
   const handleShellAnimationCompleteInternal = (id) => {
-    // Actualiza el estado para indicar que la cáscara ha completado su animación
     setShellCompleted((prevState) => ({
       ...prevState,
       [id]: true
     }))
-    // Llama al callback original si es necesario
     if (handleShellAnimationComplete) {
       handleShellAnimationComplete(id)
     }
@@ -33,7 +31,7 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
           <Fragment key={fw.id}>
             {!shellCompleted[fw.id]
               ? <CreateShell
-                size={0.3}
+                size={0.2}
                 sizes={sizes}
                 position={fw.position}
                 shellTexture={fw.shellTexture}
