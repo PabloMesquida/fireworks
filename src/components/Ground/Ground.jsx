@@ -1,8 +1,10 @@
 import { Grid, MeshReflectorMaterial } from '@react-three/drei'
+import LauncherArea from './LauncherArea/LauncherArea'
 
 function Ground() {
   return (
     <group position={[0, -2.49, 0]}>
+      <LauncherArea />
       <Grid
         position={[0, 0.01, 0]}
         infiniteGrid

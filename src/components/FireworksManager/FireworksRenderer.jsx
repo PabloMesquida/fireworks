@@ -32,17 +32,15 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
         return (
           <Fragment key={fw.id}>
             {!shellCompleted[fw.id]
-              ? (
-                <CreateShell
-                  size={0.3}
-                  sizes={sizes}
-                  position={fw.position}
-                  shellTexture={fw.shellTexture}
-                  color={fw.color}
-                  handleShellAnimationComplete={shellCallbacksRef.current[fw.id]}
-                />
-              )
-              : (<CreateFireworks
+              ? <CreateShell
+                size={0.3}
+                sizes={sizes}
+                position={fw.position}
+                shellTexture={fw.shellTexture}
+                color={fw.color}
+                handleShellAnimationComplete={shellCallbacksRef.current[fw.id]}
+              />
+              : <CreateFireworks
                 count={100}
                 size={0.3}
                 sizes={sizes}
@@ -52,7 +50,7 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
                 color={fw.color}
                 handleAnimationComplete={callbacksRef.current[fw.id]}
                 trailLength={10}
-              />)}
+              />}
           </Fragment>
         )
       })}

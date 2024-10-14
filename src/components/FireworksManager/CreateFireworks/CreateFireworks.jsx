@@ -6,7 +6,7 @@ import fireworksFragmentShader from '../../../shaders/fireworks/fragment.glsl'
 import usePositionSizeAndTimeArrays from '../../../hooks/usePositionSizeAndTimeArrays'
 
 function CreateFireworks({ count, size, sizes, position, texture, radius, color, handleAnimationComplete, blending = AdditiveBlending, trailLength }) {
-  const { positionsArray, sizesArray, timeMultipliersArray, trailOffsetsArray } = usePositionSizeAndTimeArrays(count, radius, position, trailLength)
+  const { positionsArray, sizesArray, timeMultipliersArray, trailOffsetsArray } = usePositionSizeAndTimeArrays(count, radius, trailLength)
 
   const geometry = useMemo(() => {
     const geom = new BufferGeometry()

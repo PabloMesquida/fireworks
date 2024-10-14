@@ -25,7 +25,7 @@ function ControlPanel({ setFireworks, textures }) {
           (Math.random() - 0.5) * 2
         ),
         texture: textures[3],
-        shellTexture: textures[0],
+        shellTexture: textures[3],
         color: randomColor
       }
     ])

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Vector3, Spherical } from 'three'
 
-function usePositionSizeAndTimeArrays(count, radius, position, trailLength) {
+function usePositionSizeAndTimeArrays(count, radius, trailLength) {
   return useMemo(() => {
     const positionsArray = new Float32Array(count * trailLength * 3)
     const sizesArray = new Float32Array(count * trailLength)

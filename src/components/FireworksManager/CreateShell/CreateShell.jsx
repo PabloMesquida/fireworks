@@ -1,13 +1,14 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, memo } from 'react'
 import { AdditiveBlending, Uniform, BufferGeometry, ShaderMaterial, BufferAttribute, Vector3 } from 'three'
 import trailVertexShader from '../../../shaders/trail/vertex.glsl'
 import trailFragmentShader from '../../../shaders/trail/fragment.glsl'
 import gsap from 'gsap'
 
-const getRandomPosition = () => (Math.random() - 0.5)
+const getRandomXPosition = () => (Math.random() - 0.5) * 4
+const getRandomYPosition = () => (Math.random() - 0.5)
 
 function CreateShell({ size, sizes, position, shellTexture, color, handleShellAnimationComplete, blending = AdditiveBlending }) {
-  const startPosition = new Vector3(getRandomPosition(), 0, getRandomPosition())
+  const startPosition = new Vector3(getRandomXPosition(), 0, getRandomYPosition())
 
   const uniforms = useMemo(() => ({
     uSize: new Uniform(size / 2),
@@ -56,4 +57,6 @@ function CreateShell({ size, sizes, position, shellTexture, color, handleShellAn
   )
 }
 
-export default CreateShell
+const MemoizedCreateShell = memo(CreateShell)
+
+export default MemoizedCreateShell
