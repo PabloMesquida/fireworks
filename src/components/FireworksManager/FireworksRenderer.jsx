@@ -31,7 +31,7 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
           <Fragment key={fw.id}>
             {!shellCompleted[fw.id]
               ? <CreateShell
-                size={0.2}
+                size={0.5}
                 sizes={sizes}
                 position={fw.position}
                 shellTexture={fw.shellTexture}
@@ -39,7 +39,7 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
                 handleShellAnimationComplete={shellCallbacksRef.current[fw.id]}
               />
               : <CreateFireworks
-                count={100}
+                count={200}
                 size={0.3}
                 sizes={sizes}
                 position={fw.position}

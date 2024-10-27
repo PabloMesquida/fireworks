@@ -5,6 +5,8 @@ uniform vec2 uResolution;
 uniform float uProgress;
 
 attribute vec3 aEndPosition;
+attribute float aTimeMultiplier;
+attribute float aTrailOffset;
 
 void main()
 {
@@ -16,6 +18,10 @@ void main()
 
     // Aseguramos que el progreso esté entre 0 y 1
     float progress = clamp(uProgress, 0.0, 1.0);
+
+    // Factor para reducir el progreso de las partículas del trail para que se detengan antes
+    float stopFactor = 1.0 - aTrailOffset * 0.7; 
+    progress *= stopFactor;
 
     // Aplicamos una curva de suavizado al progreso para una animación más fluida
     float easedProgress = 1.0 - pow(1.0 - progress, 3.0);

@@ -43,7 +43,7 @@ function usePositionSizeAndTimeArrays(count, radius, trailLength) {
         sizesArray[i * trailLength + j] = trailSize
 
         // Ajustar el tiempo multiplicador para todas las partículas del trail
-        timeMultipliersArray[i * trailLength + j] = 1 // Todas las partículas tienen el mismo tiempo multiplicador
+        timeMultipliersArray[i * trailLength + j] = (0.9 - Math.random() * 0.2)
 
         // Ajustar el trailOffset para que las partículas se detengan progresivamente antes
         trailOffsetsArray[i * trailLength + j] = j / (trailLength + Math.random() * 12) // Ajusta la distancia de las partículas del trail

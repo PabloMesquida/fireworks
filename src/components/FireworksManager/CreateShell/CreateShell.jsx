@@ -3,11 +3,14 @@ import { AdditiveBlending, Uniform, BufferGeometry, ShaderMaterial, BufferAttrib
 import trailVertexShader from '../../../shaders/trail/vertex.glsl'
 import trailFragmentShader from '../../../shaders/trail/fragment.glsl'
 import gsap from 'gsap'
+import useTimeAndTrailOffsetsArrays from '../../../hooks/useTimeAndTrailOffsetsArrays'
 
 const getRandomPositionInRange = (range) => (Math.random() - 0.5) * range
 
 function CreateShell({ size, sizes, position, shellTexture, color, handleShellAnimationComplete, blending = AdditiveBlending }) {
-  const startPosition = new Vector3(getRandomPositionInRange(4), 0, getRandomPositionInRange(1))
+  const startPosition = useMemo(() => new Vector3(getRandomPositionInRange(4), 0, getRandomPositionInRange(1)), [])
+
+  const { timeMultipliersArray, trailOffsetsArray } = useTimeAndTrailOffsetsArrays(10)
 
   const uniforms = useMemo(() => ({
     uSize: new Uniform(size / 2),
@@ -30,20 +33,17 @@ function CreateShell({ size, sizes, position, shellTexture, color, handleShellAn
   const geometry = useMemo(() => {
     const geom = new BufferGeometry()
 
-    // Posición inicial del vértice
     const aStartPosition = new Float32Array([startPosition.x, startPosition.y, startPosition.z])
-
-    // Posición final del vértice
     const aEndPosition = new Float32Array([position.x, position.y, position.z])
 
-    // Asigna el atributo 'position' para la posición inicial
     geom.setAttribute('position', new BufferAttribute(aStartPosition, 3))
-
-    // Asigna el atributo 'aEndPosition' para la posición final
     geom.setAttribute('aEndPosition', new BufferAttribute(aEndPosition, 3))
+    geom.setAttribute('aTimeMultiplier', new BufferAttribute(timeMultipliersArray, 1))
+    geom.setAttribute('aTrailOffset', new BufferAttribute(trailOffsetsArray, 1))
 
     return geom
-  }, [position, startPosition])
+  }, [position, startPosition, timeMultipliersArray, trailOffsetsArray])
+
   useEffect(() => {
     const animation = gsap.to(uniforms.uProgress, {
       value: 1,

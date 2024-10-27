@@ -14,7 +14,7 @@ void main ()
     float progress = uProgress * aTimeMultiplier;
 
     // Factor para reducir el progreso de las partículas del trail para que se detengan antes
-    float stopFactor = 1.0 - aTrailOffset * 0.7; 
+    float stopFactor = 1.0 - aTrailOffset * 0.9 ; 
     progress *= stopFactor;
 
     vec3 newPosition = position;
@@ -34,17 +34,17 @@ void main ()
     // Caída
     float fallingProgress = remap(progress, 0.1, 1.0, 0.0, 1.0);
     fallingProgress = clamp(fallingProgress, 0.0, 1.0);
-    fallingProgress = 1.0 - (pow(1.0 - fallingProgress, 3.0));
-    newPosition.y -= fallingProgress * 0.1;
+    fallingProgress = 1.0 - (pow(1.0 - fallingProgress, 2.0));
+    newPosition.y -= fallingProgress * 0.05;
     if(newPosition.x > 0.0){
-        newPosition.x += fallingProgress * 0.1;
+        newPosition.x += fallingProgress * 0.05;
     } else{
-        newPosition.x -= fallingProgress * 0.1;
+        newPosition.x -= fallingProgress * 0.05;
     }
       if(newPosition.z > 0.0){
-        newPosition.z += fallingProgress * 0.1;
+        newPosition.z += fallingProgress * 0.05;
     } else{
-        newPosition.z -= fallingProgress * 0.1;
+        newPosition.z -= fallingProgress * 0.05;
     }
 
     // Ajuste de tamaño
