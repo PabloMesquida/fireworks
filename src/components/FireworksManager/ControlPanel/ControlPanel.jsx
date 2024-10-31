@@ -1,4 +1,4 @@
-import { useCallback, memo } from 'react'
+import { useCallback, memo, useEffect } from 'react'
 import { Color, Vector3 } from 'three'
 import { Html } from '@react-three/drei'
 
@@ -38,6 +38,21 @@ function ControlPanel({ setFireworks, textures }) {
   const handlePointerOut = (e) => {
     document.body.style.cursor = 'auto'
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'f') {
+        handleClick() // Ejecutar la misma acción que el click
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    // Cleanup al desmontar el componente
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [handleClick])
 
   return (
     <>
