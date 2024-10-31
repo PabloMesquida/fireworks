@@ -31,32 +31,27 @@ function ControlPanel({ setFireworks, textures }) {
     ])
   }, [textures, setFireworks])
 
-  return (
-    <Html
-      position={[-7, 0, -2]}
-      transform
-      as='div'
-      style={{
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100px',
-        height: '100px',
-        backgroundColor: 'rgba(255, 0, 0, 0.5)'
-      }}
-    >
-      <button
-        onClick={handleClick}
-        style={{
-          padding: '10px 20px',
-          fontSize: '16px',
-          cursor: 'pointer'
-        }}
-      >
-        Lanzar Fuegos Artificiales
-      </button>
+  const handlePointerOver = (e) => {
+    document.body.style.cursor = 'pointer'
+  }
 
-    </Html>
+  const handlePointerOut = (e) => {
+    document.body.style.cursor = 'auto'
+  }
+
+  return (
+    <>
+      <Html position={[0, 0, -2]} rotation={[0, 0, 0]} center transform style={{ color: 'white', fontSize: '1.5em', userSelect: 'none' }}>
+        FIREWORKS
+      </Html>
+      <mesh
+        position={[0, -0.4, 0]} rotation={[-Math.PI / 2, 0, 0]} onClick={handleClick} onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
+        <planeGeometry args={[5, 1.4]} />
+        <meshBasicMaterial color='#FF9900' />
+      </mesh>
+    </>
   )
 }
 

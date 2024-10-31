@@ -15,10 +15,6 @@ function FireworksManager({ sizes }) {
     setFireworks((prev) => prev.filter((fw) => fw.id !== id))
   }
 
-  const handleShellAnimationComplete = (id) => {
-    console.log('Boom!', id)
-  }
-
   return (
     <group position={[0, -2, 0]}>
       <FireworksRenderer
@@ -27,7 +23,7 @@ function FireworksManager({ sizes }) {
         callbacksRef={callbacksRef}
         shellCallbacksRef={shellCallbacksRef}
         handleComplete={handleComplete}
-        handleShellAnimationComplete={handleShellAnimationComplete}
+
       />
       <ControlPanel setFireworks={setFireworks} textures={textures} />
     </group>

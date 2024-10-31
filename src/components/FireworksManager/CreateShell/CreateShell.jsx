@@ -1,5 +1,5 @@
 import { useEffect, useMemo, memo } from 'react'
-import { AdditiveBlending, Uniform, BufferGeometry, ShaderMaterial, BufferAttribute, Vector3 } from 'three'
+import { Uniform, BufferGeometry, ShaderMaterial, BufferAttribute, Vector3 } from 'three'
 import trailVertexShader from '../../../shaders/trail/vertex.glsl'
 import trailFragmentShader from '../../../shaders/trail/fragment.glsl'
 import gsap from 'gsap'
@@ -7,7 +7,7 @@ import useTimeAndTrailOffsetsArrays from '../../../hooks/useTimeAndTrailOffsetsA
 
 const getRandomPositionInRange = (range) => (Math.random() - 0.5) * range
 
-function CreateShell({ size, sizes, position, shellTexture, color, handleShellAnimationComplete, blending = AdditiveBlending }) {
+function CreateShell({ size, sizes, position, shellTexture, color, handleShellAnimationComplete }) {
   const startPosition = useMemo(() => new Vector3(getRandomPositionInRange(4), 0, getRandomPositionInRange(1)), [])
 
   const { timeMultipliersArray, trailOffsetsArray } = useTimeAndTrailOffsetsArrays(10)
