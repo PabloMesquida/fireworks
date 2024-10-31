@@ -17,7 +17,7 @@ function App() {
       {/* <Perf /> */}
       <OrbitControls
         autoRotate
-        autoRotateSpeed={0.5}
+        autoRotateSpeed={1}
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 2}
       />
