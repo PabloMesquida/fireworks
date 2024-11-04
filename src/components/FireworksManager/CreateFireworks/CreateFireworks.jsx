@@ -39,7 +39,7 @@ function CreateFireworks({ count, size, sizes, position, texture, radius, color,
   }, [uniforms, blending])
 
   useEffect(() => {
-    const animation = gsap.to(uniforms.uProgress, { value: 1, duration: 3, ease: 'linear', onComplete: () => handleAnimationComplete() })
+    const animation = gsap.to(uniforms.uProgress, { value: 1, duration: 4, ease: 'linear', onComplete: () => handleAnimationComplete() })
 
     return () => {
       geometry.dispose()

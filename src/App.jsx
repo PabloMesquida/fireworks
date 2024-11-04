@@ -20,6 +20,7 @@ function App() {
         autoRotateSpeed={1}
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 2}
+        target={[0, 2, 0]}
       />
 
       <Environment preset='dawn' />

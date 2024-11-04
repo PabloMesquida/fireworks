@@ -49,14 +49,14 @@ void main ()
 
     // Ajuste de tamaño
     float sizeOpeningProgress = remap(progress, 0.0, 0.125, 0.0, 1.0);
-    float sizeClosingProgress = remap(progress, 0.125, 1.0, 1.0, 0.0);
+    float sizeClosingProgress = remap(progress, 0.0, 0.5, 1.0, 0.0);
     float sizeProgress = min(sizeOpeningProgress, sizeClosingProgress);
     sizeProgress = clamp(sizeProgress, 0.0, 1.0);
 
     // Twinkling
-    float twinklingProgress = remap(progress, 0.2, 0.8, 0.0, 1.0);
+    float twinklingProgress = remap(progress, 0.2, 1.0, 0.0, 1.0);
     twinklingProgress = clamp(twinklingProgress, 0.0, 2.0);
-    float sizeTwinkling = sin(progress * 50.0) * 1.5 + 1.5;
+    float sizeTwinkling = sin(sizeProgress * 50.0) * 1.5 + 1.5;
     sizeTwinkling = 1.0 - sizeTwinkling * twinklingProgress;
 
     // Posición final en espacio de modelo, vista y proyección
