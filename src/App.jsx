@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { Environment, OrbitControls } from '@react-three/drei'
+import {  OrbitControls } from '@react-three/drei'
 /* import { Perf } from 'r3f-perf' */
 import getWindowSizes from './utils/getWindowsSizes'
 import FireworksManager from './components/FireworksManager/FireworksManager'
@@ -23,7 +23,6 @@ function App() {
         target={[0, 2, 0]}
       />
 
-      <Environment preset='dawn' />
       <FireworksManager sizes={sizes} />
       <Ground />
     </Canvas>

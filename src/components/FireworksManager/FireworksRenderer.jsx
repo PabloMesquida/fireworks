@@ -69,7 +69,7 @@ function FireworksRenderer({ fireworks, sizes, callbacksRef, shellCallbacksRef, 
           </Fragment>
         )
       })}
-      <Clouds material={MeshBasicMaterial}>
+      <Clouds texture="/cloud/cloud.png" material={MeshBasicMaterial}>
         {clouds.map((cloud) =>
           <CreateCloud key={cloud.id} id={cloud.id} color={cloud.color} position={cloud.position} />
         )}
